@@ -1,32 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Post;
 
 class BlogController extends Controller
 {
     // seperti komponen tp bukan komponen halaman posts yg plural
-    private function getPosts()
-    {
-        return [
-            ['id' => 1, 'title' => 'UBG', 'content' => 'komputer'],
-            ['id' => 2, 'title' => 'unram', 'content' => 'teknik sipil'],
-            ['id' => 3, 'title' => 'uin', 'content' => 'agama'],
-        ];
-    }
 
     // halaman home isinya posts banyak
     public function home()
     {
-        $posts = $this->getPosts();
-        return view('home', compact('posts'));
+        $posts = Post::data();
+        $totalposts = Post::count();
+        return view('home', compact('posts', 'totalposts'));
     }
 
     // single kalo diklik satu2
     public function show($id)
     {
-        $posts = $this->getPosts();
-        $post = collect($posts)->firstWhere('id', (int)$id);
-
+        $post = Post::caridata($id);
+        
         if (!$post) {
             abort(404);
         }
