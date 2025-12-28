@@ -7,5 +7,5 @@
     <p><strong>Nama:</strong> {{ $info['name'] }}</p>
     <p><strong>Bio:</strong> {{ $info['bio'] }}</p>
     
-    <a href="/home">← Back to Home</a>
+    <a href="/">← Back to Home</a>
 @endsection

@@ -2,30 +2,18 @@
 
 namespace App\Models;
 
-class Post
+use Illuminate\Database\Eloquent\Model;
+
+class Post extends Model
 {
-    public static function data()
+    protected $table = 'posts';
+    protected $fillable = ['title', 'content'];
+
+    public static function aboutInfo()
     {
         return [
-            ['id' => 1, 'title' => 'UBG', 'content' => 'komputer'],
-            ['id' => 2, 'title' => 'unram', 'content' => 'teknik sipil'],
-            ['id' => 3, 'title' => 'uin', 'content' => 'agama'],
+            'name' => 'sutha',
+            'bio' => 'Head of pustik UBG'
         ];
-    }
-
-    public static function caridata($id)
-    {
-        $posts = self::data();
-
-        foreach ($posts as $post) {
-            if ($post['id'] == $id) {
-                return $post;
-            }
-        }
-        return null;
-    }
-    public static function count()
-    {
-        return count(self::data());
     }
 }
